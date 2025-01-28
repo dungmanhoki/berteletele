@@ -8,7 +8,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; }
-    .container { max-width: 1200px; margin: auto; padding: 20px; }
+    .container { max-width: 100%; margin: auto; padding: 20px; }
     
     /* Navbar */
     nav { background-color: #333; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; }
@@ -43,12 +43,31 @@
     /* Footer */
     footer { text-align: center; padding: 20px; background: #333; color: white; margin-top: 40px; }
     
-    /* Responsive */
+        /* Responsive */
+        @media (max-width: 1024px) {
+      .container { padding: 15px; }
+      .nav-links a { font-size: 14px; }
+      .card-content h2 { font-size: 16px; }
+    }
+
     @media (max-width: 768px) {
       .nav-links { display: none; flex-direction: column; position: absolute; background: #333; width: 100%; top: 50px; left: 0; text-align: center; }
       .nav-links.active { display: flex; }
       .menu-toggle { display: block; }
-      .article-container img { display: flex; width: 100%; align-content: center;}
+      .search-container { flex-direction: column; }
+      .search-container input { border-radius: 5px; margin-bottom: 5px; }
+      .search-container button { border-radius: 5px; }
+      .swiper-slide { flex-direction: column; align-items: center; }
+      .card { max-width: 100%; }
+      .article-container img { width: 100%; height: auto; }
+    }
+    
+    @media (max-width: 480px) {
+      .nav-links a { font-size: 12px; }
+      .logo { font-size: 18px; }
+      .card-content h2 { font-size: 14px; }
+      .card-content p { font-size: 12px; }
+      .article-container p { font-size: 14px; }
     }
   </style>
 </head>
@@ -69,11 +88,15 @@
     </ul>
   </nav>
 
-  <div class="container">
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Cari berita...">
-      <button>Search</button>
-    </div>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Cari berita..." onkeyup="searchFunction()">
+    <button onclick="searchFunction()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="11" cy="11" r="8" stroke-width="2"></circle>
+        <line x1="16" y1="16" x2="22" y2="22" stroke-width="2"></line>
+      </svg>
+    </button>
+  </div>
     
     <div class="swiper-container">
       <div class="swiper-wrapper">
@@ -160,6 +183,23 @@
     document.querySelector('.menu-toggle').addEventListener('click', function() {
       document.querySelector('.nav-links').classList.toggle('active');
     });
+  </script>
+  <!--SEARCH SCRIPT-->
+  <script>
+    function searchFunction() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let articles = document.querySelectorAll(".card-content h2");
+  
+      articles.forEach((article) => {
+        let text = article.textContent.toLowerCase();
+        let card = article.closest(".card");
+        if (text.includes(input)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
   </script>
 </body>
 </html>
