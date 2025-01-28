@@ -19,7 +19,6 @@
       margin: auto;
       padding: 20px;
     }
-    /* Responsive Navbar */
     nav {
       background-color: #333;
       padding: 10px 20px;
@@ -48,11 +47,11 @@
       color: white;
       cursor: pointer;
     }
-    /* Responsive Search */
     .search-container {
       display: flex;
       width: 100%;
       max-width: 400px;
+      margin-bottom: 20px;
     }
     .search-container input {
       flex: 1;
@@ -67,13 +66,12 @@
       color: white;
       border-radius: 0 5px 5px 0;
     }
-    /* Card Styling */
     .card {
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      margin-bottom: 20px;
-      width: 100%;
+      margin: 10px;
+      background: #fff;
     }
     .card img {
       width: 100%;
@@ -90,7 +88,6 @@
     .card-content p {
       font-size: 14px;
     }
-    /* Swiper Responsive */
     .swiper-container {
       width: 100%;
       padding-top: 20px;
@@ -99,7 +96,6 @@
       display: flex;
       justify-content: center;
     }
-    /* Responsive Styles */
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -117,13 +113,6 @@
       .menu-toggle {
         display: block;
       }
-      .swiper-wrapper {
-        display: flex;
-        flex-direction: column;
-      }
-      .swiper-slide {
-        width: 100% !important;
-      }
     }
   </style>
 </head>
@@ -139,7 +128,6 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-
   <div class="container">
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Cari berita...">
@@ -156,19 +144,39 @@
             </div>
           </div>
         </div>
+        <div class="swiper-slide">
+          <div class="card">
+            <img src="assets/card2.webp" alt="News">
+            <div class="card-content">
+              <h2>Update Teknologi</h2>
+              <p>Ringkasan berita teknologi.</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="card">
+            <img src="assets/card3.webp" alt="News">
+            <div class="card-content">
+              <h2>Olahraga</h2>
+              <p>Ringkasan berita olahraga.</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="swiper-pagination"></div>
     </div>
   </div>
-
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     const swiper = new Swiper('.swiper-container', {
       spaceBetween: 10,
       slidesPerView: 1,
+      breakpoints: {
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      },
       pagination: { el: '.swiper-pagination', clickable: true },
     });
-
     document.querySelector('.menu-toggle').addEventListener('click', function() {
       document.querySelector('.nav-links').classList.toggle('active');
     });
